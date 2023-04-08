@@ -1,3 +1,12 @@
 from django.db import models
 
-print("Models run!")
+
+class Place(models.Model):
+    title = models.CharField(max_length=100)
+    description_short = models.TextField()
+    description_long = models.TextField()
+    lng = models.CharField(max_length=50)
+    lat = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
