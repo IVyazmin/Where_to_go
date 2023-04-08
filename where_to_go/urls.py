@@ -17,10 +17,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-import views
+from places import views as places_views
 from where_to_go import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', places_views.home),
 ] + static(settings.STATIC_URL)
