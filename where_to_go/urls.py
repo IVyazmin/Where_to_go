@@ -23,4 +23,5 @@ from where_to_go import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', places_views.home),
+    path('places/<int:place_id>/', places_views.get_place),
 ] + static(settings.STATIC_URL) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
