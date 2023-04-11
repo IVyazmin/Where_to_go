@@ -12,11 +12,19 @@ class Place(models.Model):
     def __str__(self):
         return self.title_text
 
+    class Meta:
+        verbose_name = "Место"
+        verbose_name_plural = "Места"
+
 
 class Image(models.Model):
     place = models.ForeignKey(to="places.Place", verbose_name="Место", on_delete=models.CASCADE)
-    image = models.ImageField(verbose_name="Фото")
-    number = models.IntegerField(verbose_name="Номер")
+    image = models.ImageField(verbose_name="Картинка")
+    number = models.IntegerField(verbose_name="Позиция")
 
     def __str__(self):
         return f"{self.number} {self.place}"
+
+    class Meta:
+        verbose_name = "Фотография"
+        verbose_name_plural = "Фотографии"
