@@ -20,7 +20,7 @@ class Place(models.Model):
 class Image(models.Model):
     place = models.ForeignKey(to="places.Place", verbose_name="Место", on_delete=models.CASCADE)
     image = models.ImageField(verbose_name="Картинка")
-    number = models.IntegerField(verbose_name="Позиция")
+    number = models.IntegerField(default=0, db_index=True, verbose_name="Позиция")
 
     def __str__(self):
         return f"{self.number} {self.place}"
@@ -28,3 +28,4 @@ class Image(models.Model):
     class Meta:
         verbose_name = "Фотография"
         verbose_name_plural = "Фотографии"
+        ordering = ["number"]

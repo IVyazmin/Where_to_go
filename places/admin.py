@@ -1,18 +1,19 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from adminsortable2.admin import SortableStackedInline, SortableAdminBase
 
 from .models import Place, Image
 
 admin.site.register(Image)
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableStackedInline):
     model = Image
-    fields = ["image", "get_image", "number"]
-    readonly_fields = ["get_image"]
+    fields = ["image", "preview", "number"]
+    readonly_fields = ["preview"]
     extra = 1
 
-    def get_image(self, obj):
+    def preview(self, obj):
         if hasattr(obj.image, "url"):
             return format_html('<img src="{url}" style="max-height:200px;"/>'.format(
                 url=obj.image.url
@@ -21,6 +22,6 @@ class ImageInline(admin.TabularInline):
 
 
 @admin.register(Place)
-class PlaceAdmin(admin.ModelAdmin):
+class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [ImageInline]
 
