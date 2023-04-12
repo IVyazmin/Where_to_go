@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG")
 CSRF_COOKIE_SECURE = True
 
-ALLOWED_HOSTS = [os.getenv("DJANGO_ALLOWED_HOSTS")]
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS").split()
 
 
 # Application definition
